@@ -8,6 +8,10 @@ def run():
 
     bot = commands.Bot(command_prefix="!", intents=intents)
 
+# TODO: add roles function
+
+# TODO: add music funtion
+
     @bot.event()
     async def on_ready():
         print(bot.user)
