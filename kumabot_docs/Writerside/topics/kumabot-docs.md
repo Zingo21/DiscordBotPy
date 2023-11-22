@@ -1,0 +1,3 @@
+# About Kumabot docs
+
+Start typing here...
