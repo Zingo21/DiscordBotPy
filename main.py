@@ -34,6 +34,11 @@ def run():
     async def on_ready():
         logger.info(f"User: {bot.user} (ID: {bot.user.id})")
 
+    @bot.event
+    async def on_command_error(ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            await ctx.send("Handled error globally")
+
     @bot.command(
         aliases=['p'],
         help="This is help",
@@ -59,6 +64,12 @@ def run():
     @bot.command()
     async def add(ctx, one : int, two : int):
         await ctx.send(one, two)
+
+    @add.error
+    async def add_error(ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            await  ctx.send("Handled error locally")
+
 
     @bot.command()
     async def joined(ctx, who : discord.Member):
