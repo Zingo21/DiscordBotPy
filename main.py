@@ -61,15 +61,32 @@ def run():
     async def choices(ctx, *options):
         await ctx.send(random.choice(options))
 
-    @bot.command()
+    @bot.group()
+    async def math(ctx):
+        if ctx.invoked_subcommand is None:
+            await ctx.send(f"No, {ctx.subcommand_passed} does not belong to math")
+
+    @math.group()
+    async def simple(ctx):
+        if ctx.invoked_subcommand is None:
+            await ctx.send(f"No, {ctx.subcommand_passed} does not belong to simple")
+
+    #@bot.command()
+    #async def add(ctx, one : int, two : int):
+    #    await ctx.send(one, two)
+
+    @simple.command()
     async def add(ctx, one : int, two : int):
-        await ctx.send(one, two)
+        await ctx.send(one + two)
+
+    @simple.command()
+    async def subtract(ctx, one : int, two : int):
+        await ctx.send(one - two)
 
     @add.error
     async def add_error(ctx, error):
         if isinstance(error, commands.MissingRequiredArgument):
             await  ctx.send("Handled error locally")
-
 
     @bot.command()
     async def joined(ctx, who : discord.Member):
