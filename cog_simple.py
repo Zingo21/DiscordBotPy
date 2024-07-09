@@ -5,6 +5,7 @@ from cogs.greetings import Greetings
 
 logger = settings.logging.getLogger("bot")
 
+
 def run():
     intents = discord.Intents.default()
     intents.message_content = True

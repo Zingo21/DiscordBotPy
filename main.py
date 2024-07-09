@@ -20,6 +20,7 @@ class Slapper(commands.Converter):
 
         return f"{nickname} slaps {someone} with {argument}"
 
+
 def run():
     intents = discord.Intents.default()
     intents.message_content = True
